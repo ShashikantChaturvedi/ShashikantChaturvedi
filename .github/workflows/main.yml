@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
-        install-dir: 'C:\Users\runneradmin\dotnet'
+  
 
     - name: Setup .NET Framework 4.6.2
       run: |
