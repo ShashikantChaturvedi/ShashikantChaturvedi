@@ -23,7 +23,7 @@ jobs:
         
     - name: Setup .NET Framework 4.6.2
       run: |
-        Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/?linkid=2099466' -OutFile .\dotnet-framework-462-offline-installer.exe
+        Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/?linkid=2088517' -OutFile .\dotnet-framework-462-offline-installer.exe
         $process = Start-Process -FilePath .\dotnet-framework-462-offline-installer.exe -ArgumentList '/q /norestart' -PassThru -Wait -NoNewWindow
         if ($process.ExitCode -ne 0) {
           Write-Error "Installation failed with exit code $($process.ExitCode)"
