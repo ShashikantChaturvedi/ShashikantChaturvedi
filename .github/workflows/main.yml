@@ -20,11 +20,19 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
-  
-
+        
     - name: Setup .NET Framework 4.6.2
       run: |
         Invoke-WebRequest -Uri 'https://go.microsoft.com/fwlink/?linkid=2099466' -OutFile .\dotnet-framework-462-offline-installer.exe
-        $process = Start-Process -FilePath .\dotnet-framework-462-offline-installer.exe -ArgumentList '/q /norestart' -PassThru
-        $process.WaitForExit()
+        $process = Start-Process -FilePath .\dotnet-framework-462-offline-installer.exe -ArgumentList '/q /norestart' -PassThru -Wait -NoNewWindow
+        if ($process.ExitCode -ne 0) {
+          Write-Error "Installation failed with exit code $($process.ExitCode)"
+          exit $process.ExitCode
+        } else {
+          Write-Output "Installation completed successfully"
+        }
       shell: pwsh
+
+    - name: Print .NET SDK versions
+      run: dotnet --list-sdks
+
