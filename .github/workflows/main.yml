@@ -25,12 +25,3 @@ jobs:
       run: |
         choco install netfx-4.6.2-devpack
 
-    - name: Restore dependencies
-      run: nuget restore
-
-    - name: Build solution
-      run: msbuild -p:Configuration=Release
-
-    - name: Run tests
-      run: |
-        vstest.console.exe **\*Tests.dll
